@@ -97,6 +97,15 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\0_open.png" />
+    <Resource Include="Resource\1_prev.png" />
+    <Resource Include="Resource\2_next.png" />
+    <Resource Include="Resource\3_delete_left.png" />
+    <Resource Include="Resource\4_delete_right.png" />
+    <Resource Include="Resource\5_settings.png" />
+    <Resource Include="Resource\6_help.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.

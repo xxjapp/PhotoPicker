@@ -37,16 +37,31 @@
             <ColumnDefinition Width="5"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="40"/>
+            <RowDefinition Height="58"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="80"/>
         </Grid.RowDefinitions>
-        <Button Content="Open ..." Grid.Column="1" HorizontalAlignment="Left" Margin="5,5,5,5" Grid.Row="0" Width="80" Command="{x:Static commands:AppCommands.OpenFileCommand}" Height="30"/>
-        <Button Content="Previous" Grid.Column="1" HorizontalAlignment="Left" Margin="95,5,5,5" Grid.Row="0" Width="80" Command="{x:Static commands:AppCommands.PreviousCommand}" Height="30"/>
-        <Button Content="Next" Grid.Column="1" HorizontalAlignment="Left" Margin="185,5,5,5" Grid.Row="0" Width="80" Command="{x:Static commands:AppCommands.NextCommand}" Height="30"/>
-        <Button Content="Delete Left" Grid.Column="2" HorizontalAlignment="Left" Margin="5,5,5,5" Grid.Row="0" Width="80" Command="{x:Static commands:AppCommands.DeleteLeftCommand}" Height="30"/>
-        <Button Content="Delete Right" Grid.Column="2" HorizontalAlignment="Left" Margin="95,5,5,5" Grid.Row="0" Width="80" Command="{x:Static commands:AppCommands.DeleteRightCommand}" Height="30"/>
-        <Button Content="Help ..." Grid.Column="2" HorizontalAlignment="Right" Margin="5,5,5,5" Grid.Row="0" Width="80" Command="Help" Height="30"/>
+        <Button ToolTip="Open ..." Grid.Column="1" HorizontalAlignment="Left" Margin="5,5,5,5" Grid.Row="0" Width="48" Command="{x:Static commands:AppCommands.OpenFileCommand}">
+            <Image Source="Resource\0_open.png"/>
+        </Button>
+        <Button ToolTip="Previous" Grid.Column="1" HorizontalAlignment="Left" Margin="65,5,5,5" Grid.Row="0" Width="48" Command="{x:Static commands:AppCommands.PreviousCommand}">
+            <Image Source="Resource\1_prev.png"/>
+        </Button>
+        <Button ToolTip="Next" Grid.Column="1" HorizontalAlignment="Left" Margin="125,5,5,5" Grid.Row="0" Width="48" Command="{x:Static commands:AppCommands.NextCommand}">
+            <Image Source="Resource\2_next.png"/>
+        </Button>
+        <Button ToolTip="Delete Left" Grid.Column="2" HorizontalAlignment="Left" Margin="5,5,5,5" Grid.Row="0" Width="48" Command="{x:Static commands:AppCommands.DeleteLeftCommand}">
+            <Image Source="Resource\3_delete_left.png"/>
+        </Button>
+        <Button ToolTip="Delete Right" Grid.Column="2" HorizontalAlignment="Left" Margin="65,5,5,5" Grid.Row="0" Width="48" Command="{x:Static commands:AppCommands.DeleteRightCommand}">
+            <Image Source="Resource\4_delete_right.png"/>
+        </Button>
+        <Button ToolTip="Settings ..." Grid.Column="2" HorizontalAlignment="Right" Margin="5,5,65,5" Grid.Row="0" Width="48" Command="Help">
+            <Image Source="Resource\5_settings.png"/>
+        </Button>
+        <Button ToolTip="Help ..." Grid.Column="2" HorizontalAlignment="Right" Margin="5,5,5,5" Grid.Row="0" Width="48" Command="Help">
+            <Image Source="Resource\6_help.png"/>
+        </Button>
         <Image Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" Margin="5,5,5,5" Source="{Binding PreviousImageSource}" VerticalAlignment="Center" Visibility="Hidden"/>
         <Image Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" Margin="5,5,5,5" Source="{Binding ImageSource0}" VerticalAlignment="Center"/>
         <Image Grid.Row="1" Grid.Column="2" HorizontalAlignment="Center" Margin="5,5,5,5" Source="{Binding NextImageSource}" VerticalAlignment="Center" Visibility="Hidden"/>
