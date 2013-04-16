@@ -52,7 +52,7 @@ namespace PhotoPicker {
         public int Index {
             get { return _index; }
             set {
-                if (_files == null || _files.Length == 0) {
+                if (_files == null) {
                     return;
                 }
 
@@ -284,18 +284,23 @@ namespace PhotoPicker {
         }
 
         private void showImage0(int p) {
-            string fileName = _files[p];
-            BitmapImage bi = (BitmapImage)_imageCache[p];
+            if (_files.Length == 0) {
+                ImageInfo0 = null;
+                ImageSource0 = null;
+            } else {
+                string fileName = _files[p];
+                BitmapImage bi = (BitmapImage)_imageCache[p];
 
-            ImageInfo0 = (p + 1) + "/" + _files.Length + "\n"
-                + fileName + "\n"
-                + bi.PixelWidth + " x " + bi.PixelHeight;
-            ImageSource0 = bi;
-            Debug.WriteLine(" 0) Load " + p + " completed");
+                ImageInfo0 = (p + 1) + "/" + _files.Length + "\n"
+                    + fileName + "\n"
+                    + bi.PixelWidth + " x " + bi.PixelHeight;
+                ImageSource0 = bi;
+                Debug.WriteLine(" 0) Load " + p + " completed");
+            }
         }
 
         private void showImage1(int p) {
-            if (p >= _files.Length) {
+            if (_files.Length < 2) {
                 ImageInfo1 = null;
                 ImageSource1 = null;
             } else {

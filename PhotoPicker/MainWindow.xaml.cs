@@ -148,7 +148,7 @@ namespace PhotoPicker {
 
         private void DeleteLeftCanExecute(object sender, CanExecuteRoutedEventArgs e) {
             e.Handled = true;
-            e.CanExecute = (_viewModel != null) && (_viewModel.Files.Length > 1);
+            e.CanExecute = (_viewModel != null) && (_viewModel.Files.Length > 0);
         }
 
         private void DeleteLeftExecuted(object sender, RoutedEventArgs e) {
