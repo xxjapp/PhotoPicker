@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.VisualBasic.FileIO;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
@@ -7,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
 namespace PhotoPicker
@@ -31,10 +33,10 @@ namespace PhotoPicker
         private string[] _files = new string[0];
         private int _index = -1;
         private string[] _imageInfos = new string[2];
-        private BitmapImage[] _imageSources = new BitmapImage[2];
-        private BitmapImage _previousImageSource = null;
-        private BitmapImage _nextImageSource = null;
-        private Dictionary<int, BitmapImage> _imageCache = new Dictionary<int, BitmapImage>();
+        private ImageSource[] _imageSources = new ImageSource[2];
+        private ImageSource _previousImageSource = null;
+        private ImageSource _nextImageSource = null;
+        private Dictionary<int, ImageSource> _imageCache = new Dictionary<int, ImageSource>();
         private readonly BackgroundWorker _backgroundWorker = new BackgroundWorker();
         #endregion
 
@@ -58,7 +60,7 @@ namespace PhotoPicker
             get { return _index; }
             set
             {
-                if (_files == null || _files.Length <= 1)
+                if (_files == null || _files.Length == 0)
                 {
                     return;
                 }
@@ -76,6 +78,10 @@ namespace PhotoPicker
                 else
                 {
                     newValue = value;
+                }
+
+                if (newValue == -1) {
+                    newValue = 0;
                 }
 
                 if (_index != newValue)
@@ -112,7 +118,7 @@ namespace PhotoPicker
             }
         }
 
-        public BitmapImage ImageSource0
+        public ImageSource ImageSource0
         {
             get { return _imageSources[0]; }
             set
@@ -125,7 +131,7 @@ namespace PhotoPicker
             }
         }
 
-        public BitmapImage ImageSource1
+        public ImageSource ImageSource1
         {
             get { return _imageSources[1]; }
             set
@@ -138,7 +144,7 @@ namespace PhotoPicker
             }
         }
 
-        public BitmapImage PreviousImageSource
+        public ImageSource PreviousImageSource
         {
             get { return _previousImageSource; }
             set
@@ -151,7 +157,7 @@ namespace PhotoPicker
             }
         }
 
-        public BitmapImage NextImageSource
+        public ImageSource NextImageSource
         {
             get { return _nextImageSource; }
             set
@@ -172,7 +178,7 @@ namespace PhotoPicker
 
         #region Methods
 
-        public void setImage(string fileName, List<string> types)
+        public void SetImage(string fileName, List<string> types)
         {
             // get all files
             String directory = Path.GetDirectoryName(fileName);
@@ -186,6 +192,24 @@ namespace PhotoPicker
             // set index
             _index = -1;
             Index = Array.IndexOf(Files, fileName);
+        }
+
+        internal void DeleteFile(int p) {
+            string fileToDelete = _files[p];
+
+            // update files
+            Files = Files.Where((val, idx) => idx != p).ToArray();
+
+            // clear image cache
+            _imageCache.Clear();
+
+            // set index
+            int oldIndex = _index;
+            _index = -1;
+            Index = oldIndex;
+
+            // remove file to recycle bin
+            FileSystem.DeleteFile(fileToDelete, UIOption.OnlyErrorDialogs, RecycleOption.SendToRecycleBin);
         }
 
         private void RaisePropertyChanged(string propertyName)
@@ -234,7 +258,7 @@ namespace PhotoPicker
         private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
         {
             BackgroundWorker worker = sender as BackgroundWorker;
-            BitmapImage bitmapImage = null;
+            ImageSource imageSource = null;
 
             for (int i = -1; i <= 2; i++)
             {
@@ -248,14 +272,14 @@ namespace PhotoPicker
                     int p = _index + i;
 
                     // load images
-                    if (!_imageCache.TryGetValue(p, out bitmapImage))
+                    if (!_imageCache.TryGetValue(p, out imageSource))
                     {
                         if (p >= 0 && p < _files.Length)
                         {
                             // Thread.Sleep(10000);
-                            bitmapImage = new BitmapImage(new Uri(_files[p]));
-                            bitmapImage.Freeze();
-                            _imageCache[p] = bitmapImage;
+                            imageSource = BitmapFromUri(new Uri(_files[p]));
+                            imageSource.Freeze();
+                            _imageCache[p] = imageSource;
                         }
                     }
 
@@ -272,16 +296,16 @@ namespace PhotoPicker
             }
 
             // load background image source
-            if (_imageCache.TryGetValue(_index - 1, out bitmapImage))
+            if (_imageCache.TryGetValue(_index - 1, out imageSource))
             {
-                PreviousImageSource = bitmapImage;
-                Debug.WriteLine("Load " + (_index - 1) + " completed");
+                PreviousImageSource = imageSource;
+                Debug.WriteLine("-1) Load " + (_index - 1) + " completed");
             }
 
-            if (_imageCache.TryGetValue(_index + 2, out bitmapImage))
+            if (_imageCache.TryGetValue(_index + 2, out imageSource))
             {
-                NextImageSource = bitmapImage;
-                Debug.WriteLine("Load " + (_index + 2) + " completed");
+                NextImageSource = imageSource;
+                Debug.WriteLine(" 2) Load " + (_index + 2) + " completed");
             }
 
             // clear old images
@@ -290,6 +314,15 @@ namespace PhotoPicker
                 Debug.WriteLine("Remove " + item.Key);
                 _imageCache.Remove(item.Key);
             }
+        }
+
+        public static ImageSource BitmapFromUri(Uri source) {
+            var bitmap = new BitmapImage();
+            bitmap.BeginInit();
+            bitmap.UriSource = source;
+            bitmap.CacheOption = BitmapCacheOption.OnLoad;
+            bitmap.EndInit();
+            return bitmap;
         }
 
         void backgroundWorker1_ProgressChanged(object sender, ProgressChangedEventArgs e)
@@ -312,25 +345,30 @@ namespace PhotoPicker
         private void showImage0(int p)
         {
             string fileName = _files[p];
-            BitmapImage bi = _imageCache[p];
+            BitmapImage bi = (BitmapImage)_imageCache[p];
 
             ImageInfo0 = (p + 1) + "/" + _files.Length + "\n"
                 + fileName + "\n"
                 + bi.PixelWidth + " x " + bi.PixelHeight;
             ImageSource0 = bi;
-            Debug.WriteLine("Load " + p + " completed");
+            Debug.WriteLine(" 0) Load " + p + " completed");
         }
 
         private void showImage1(int p)
         {
-            string fileName = _files[p];
-            BitmapImage bi = _imageCache[p];
+            if (p >= _files.Length) {
+                ImageInfo1 = null;
+                ImageSource1 = null;
+            } else {
+                string fileName = _files[p];
+                BitmapImage bi = (BitmapImage)_imageCache[p];
 
-            ImageInfo1 = (p + 1) + "/" + _files.Length + "\n"
-                + fileName + "\n"
-                + bi.PixelWidth + " x " + bi.PixelHeight;
-            ImageSource1 = bi;
-            Debug.WriteLine("Load " + p + " completed");
+                ImageInfo1 = (p + 1) + "/" + _files.Length + "\n"
+                    + fileName + "\n"
+                    + bi.PixelWidth + " x " + bi.PixelHeight;
+                ImageSource1 = bi;
+                Debug.WriteLine(" 1) Load " + p + " completed");
+            }
         }
 
         private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)

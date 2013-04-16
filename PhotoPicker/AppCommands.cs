@@ -12,6 +12,8 @@ namespace PhotoPicker.Commands {
         private static RoutedUICommand _nextCommand = new RoutedUICommand("Next", "Next", typeof(AppCommands));
         private static RoutedUICommand _homeCommand = new RoutedUICommand("Home", "Home", typeof(AppCommands));
         private static RoutedUICommand _endCommand = new RoutedUICommand("End", "End", typeof(AppCommands));
+        private static RoutedUICommand _deleteLeftCommand = new RoutedUICommand("DeleteLeft", "DeleteLeft", typeof(AppCommands));
+        private static RoutedUICommand _deleteRightCommand = new RoutedUICommand("DeleteRight", "DeleteRight", typeof(AppCommands));
 
         public static RoutedCommand OpenFileCommand {
             get { return _openFileCommand; }
@@ -33,12 +35,22 @@ namespace PhotoPicker.Commands {
             get { return _endCommand; }
         }
 
+        public static RoutedCommand DeleteLeftCommand {
+            get { return _deleteLeftCommand; }
+        }
+
+        public static RoutedCommand DeleteRightCommand {
+            get { return _deleteRightCommand; }
+        }
+
         static AppCommands() {
             CommandManager.RegisterClassCommandBinding(typeof(AppCommands), new CommandBinding(_openFileCommand));
             CommandManager.RegisterClassCommandBinding(typeof(AppCommands), new CommandBinding(_previousCommand));
             CommandManager.RegisterClassCommandBinding(typeof(AppCommands), new CommandBinding(_nextCommand));
             CommandManager.RegisterClassCommandBinding(typeof(AppCommands), new CommandBinding(_homeCommand));
             CommandManager.RegisterClassCommandBinding(typeof(AppCommands), new CommandBinding(_endCommand));
+            CommandManager.RegisterClassCommandBinding(typeof(AppCommands), new CommandBinding(_deleteLeftCommand));
+            CommandManager.RegisterClassCommandBinding(typeof(AppCommands), new CommandBinding(_deleteRightCommand));
         }
     }
 }

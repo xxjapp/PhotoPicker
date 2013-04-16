@@ -15,6 +15,8 @@
         <CommandBinding Command="{x:Static commands:AppCommands.NextCommand}" CanExecute="NextCanExecute" Executed="NextExecuted" />
         <CommandBinding Command="{x:Static commands:AppCommands.HomeCommand}" CanExecute="HomeCanExecute" Executed="HomeExecuted" />
         <CommandBinding Command="{x:Static commands:AppCommands.EndCommand}" CanExecute="EndCanExecute" Executed="EndExecuted" />
+        <CommandBinding Command="{x:Static commands:AppCommands.DeleteLeftCommand}" CanExecute="DeleteLeftCanExecute" Executed="DeleteLeftExecuted" />
+        <CommandBinding Command="{x:Static commands:AppCommands.DeleteRightCommand}" CanExecute="DeleteRightCanExecute" Executed="DeleteRightExecuted" />
         <CommandBinding Command="Help" CanExecute="HelpCanExecute" Executed="HelpExecuted" />
     </Window.CommandBindings>
 
@@ -23,6 +25,8 @@
         <KeyBinding Command="{x:Static commands:AppCommands.NextCommand}" Key="Right"/>
         <KeyBinding Command="{x:Static commands:AppCommands.HomeCommand}" Key="Home"/>
         <KeyBinding Command="{x:Static commands:AppCommands.EndCommand}" Key="End"/>
+        <KeyBinding Command="{x:Static commands:AppCommands.DeleteLeftCommand}" Key="Left" Modifiers="Control"/>
+        <KeyBinding Command="{x:Static commands:AppCommands.DeleteRightCommand}" Key="Right" Modifiers="Control"/>
     </Window.InputBindings>
 
     <Grid>
@@ -40,6 +44,8 @@
         <Button Content="Open ..." Grid.Column="1" HorizontalAlignment="Left" Margin="5,5,5,5" Grid.Row="0" Width="80" Command="{x:Static commands:AppCommands.OpenFileCommand}" Height="30"/>
         <Button Content="Previous" Grid.Column="1" HorizontalAlignment="Left" Margin="95,5,5,5" Grid.Row="0" Width="80" Command="{x:Static commands:AppCommands.PreviousCommand}" Height="30"/>
         <Button Content="Next" Grid.Column="1" HorizontalAlignment="Left" Margin="185,5,5,5" Grid.Row="0" Width="80" Command="{x:Static commands:AppCommands.NextCommand}" Height="30"/>
+        <Button Content="Delete Left" Grid.Column="2" HorizontalAlignment="Left" Margin="5,5,5,5" Grid.Row="0" Width="80" Command="{x:Static commands:AppCommands.DeleteLeftCommand}" Height="30"/>
+        <Button Content="Delete Right" Grid.Column="2" HorizontalAlignment="Left" Margin="95,5,5,5" Grid.Row="0" Width="80" Command="{x:Static commands:AppCommands.DeleteRightCommand}" Height="30"/>
         <Button Content="Help ..." Grid.Column="2" HorizontalAlignment="Right" Margin="5,5,5,5" Grid.Row="0" Width="80" Command="Help" Height="30"/>
         <Image Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" Margin="5,5,5,5" Source="{Binding PreviousImageSource}" VerticalAlignment="Center" Visibility="Hidden"/>
         <Image Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" Margin="5,5,5,5" Source="{Binding ImageSource0}" VerticalAlignment="Center"/>

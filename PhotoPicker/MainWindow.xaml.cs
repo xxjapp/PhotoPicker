@@ -115,7 +115,7 @@ namespace PhotoPicker
             DialogResult result = op.ShowDialog();
             if (result.ToString() == "OK")
             {
-                _viewModel.setImage(op.FileName, getTypes(op.FilterIndex - 1));
+                _viewModel.SetImage(op.FileName, getTypes(op.FilterIndex - 1));
             }
         }
 
@@ -157,6 +157,26 @@ namespace PhotoPicker
         private void EndExecuted(object sender, RoutedEventArgs e) {
             e.Handled = true;
             _viewModel.Index = _viewModel.Files.Length - 1;
+        }
+
+        private void DeleteLeftCanExecute(object sender, CanExecuteRoutedEventArgs e) {
+            e.Handled = true;
+            e.CanExecute = (_viewModel != null) && (_viewModel.Files.Length > 1);
+        }
+
+        private void DeleteLeftExecuted(object sender, RoutedEventArgs e) {
+            e.Handled = true;
+            _viewModel.DeleteFile(_viewModel.Index);
+        }
+
+        private void DeleteRightCanExecute(object sender, CanExecuteRoutedEventArgs e) {
+            e.Handled = true;
+            e.CanExecute = (_viewModel != null) && (_viewModel.Files.Length > 1);
+        }
+
+        private void DeleteRightExecuted(object sender, RoutedEventArgs e) {
+            e.Handled = true;
+            _viewModel.DeleteFile(_viewModel.Index + 1);
         }
 
         private void HelpCanExecute(object sender, CanExecuteRoutedEventArgs e) {
