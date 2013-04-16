@@ -51,8 +51,12 @@
         <Image Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" Margin="5,5,5,5" Source="{Binding ImageSource0}" VerticalAlignment="Center"/>
         <Image Grid.Row="1" Grid.Column="2" HorizontalAlignment="Center" Margin="5,5,5,5" Source="{Binding NextImageSource}" VerticalAlignment="Center" Visibility="Hidden"/>
         <Image Grid.Row="1" Grid.Column="2" HorizontalAlignment="Center" Margin="5,5,5,5" Source="{Binding ImageSource1}" VerticalAlignment="Center"/>
-        <Label Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" Content="{Binding ImageInfo0}" VerticalAlignment="Center"/>
-        <Label Grid.Row="2" Grid.Column="2" HorizontalAlignment="Left" Content="{Binding ImageInfo1}" VerticalAlignment="Center"/>
+        <Label Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center">
+            <TextBlock Text="{Binding ImageInfo0}"/>
+        </Label>
+        <Label Grid.Row="2" Grid.Column="2" HorizontalAlignment="Left"  VerticalAlignment="Center">
+            <TextBlock Text="{Binding ImageInfo1}"/>
+        </Label>
 
     </Grid>
 </Window>
