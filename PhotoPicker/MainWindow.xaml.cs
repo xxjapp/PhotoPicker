@@ -15,20 +15,17 @@ using System.ComponentModel;
 using System.IO;
 using System.Windows.Forms;
 
-namespace PhotoPicker
-{
+namespace PhotoPicker {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
-    {
+    public partial class MainWindow : Window {
         #region Members
         MainViewModel _viewModel = null;
-        private static string[] _imageTypes = new string[] {"jpg", "jpeg", "png"};
+        private static string[] _imageTypes = new string[] { "jpg", "jpeg", "png" };
         #endregion
 
-        public MainWindow()
-        {
+        public MainWindow() {
             InitializeComponent();
 
             //  We have declared the view model instance declaratively in the xaml.
@@ -36,25 +33,21 @@ namespace PhotoPicker
             _viewModel = (MainViewModel)base.DataContext;
         }
 
-        private static List<string> allSupportedTypes()
-        {
+        private static List<string> allSupportedTypes() {
             List<string> types = new List<string>();
 
-            foreach (string imageType in _imageTypes)
-            {
+            foreach (string imageType in _imageTypes) {
                 types.Add("*." + imageType);
             }
 
             return types;
         }
 
-        private static string allSupportedTypesString()
-        {
+        private static string allSupportedTypesString() {
             return "All supported graphics" + "|" + string.Join(";", allSupportedTypes());
         }
 
-        private static List<string> jpegTypes()
-        {
+        private static List<string> jpegTypes() {
             List<string> types = new List<string>();
 
             types.Add("*." + _imageTypes[0]);
@@ -63,13 +56,11 @@ namespace PhotoPicker
             return types;
         }
 
-        private static string jpegTypesString()
-        {
+        private static string jpegTypesString() {
             return "JPEG graphics" + "|" + string.Join(";", jpegTypes());
         }
 
-        private static List<string> pngTypes()
-        {
+        private static List<string> pngTypes() {
             List<string> types = new List<string>();
 
             types.Add("*." + _imageTypes[2]);
@@ -77,15 +68,12 @@ namespace PhotoPicker
             return types;
         }
 
-        private static string pngTypesString()
-        {
+        private static string pngTypesString() {
             return "PNG graphics" + "|" + string.Join(";", pngTypes());
         }
 
-        private static List<string> getTypes(int typesIndex)
-        {
-            switch (typesIndex)
-            {
+        private static List<string> getTypes(int typesIndex) {
+            switch (typesIndex) {
                 case 0:
                     return allSupportedTypes();
                 case 1:
@@ -113,8 +101,7 @@ namespace PhotoPicker
                 + pngTypesString();
 
             DialogResult result = op.ShowDialog();
-            if (result.ToString() == "OK")
-            {
+            if (result.ToString() == "OK") {
                 _viewModel.SetImage(op.FileName, getTypes(op.FilterIndex - 1));
             }
         }

@@ -11,14 +11,11 @@ using System.Threading.Tasks;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
-namespace PhotoPicker
-{
-    class MainViewModel : INotifyPropertyChanged
-    {
+namespace PhotoPicker {
+    class MainViewModel : INotifyPropertyChanged {
         #region Construction
 
-        public MainViewModel()
-        {
+        public MainViewModel() {
             _backgroundWorker.WorkerReportsProgress = true;
             _backgroundWorker.WorkerSupportsCancellation = true;
 
@@ -42,41 +39,30 @@ namespace PhotoPicker
 
         #region Properties
 
-        public string[] Files
-        {
+        public string[] Files {
             get { return _files; }
-            set
-            {
-                if (_files != value)
-                {
+            set {
+                if (_files != value) {
                     _files = value;
                     RaisePropertyChanged("Files");
                 }
             }
         }
 
-        public int Index
-        {
+        public int Index {
             get { return _index; }
-            set
-            {
-                if (_files == null || _files.Length == 0)
-                {
+            set {
+                if (_files == null || _files.Length == 0) {
                     return;
                 }
 
                 int newValue = -1;
 
-                if (value < 0)
-                {
+                if (value < 0) {
                     newValue = 0;
-                }
-                else if (value > _files.Length - 2)
-                {
+                } else if (value > _files.Length - 2) {
                     newValue = _files.Length - 2;
-                }
-                else
-                {
+                } else {
                     newValue = value;
                 }
 
@@ -84,86 +70,67 @@ namespace PhotoPicker
                     newValue = 0;
                 }
 
-                if (_index != newValue)
-                {
+                if (_index != newValue) {
                     _index = newValue;
                     RaisePropertyChanged("Index");
                 }
             }
         }
 
-        public string ImageInfo0
-        {
+        public string ImageInfo0 {
             get { return _imageInfos[0]; }
-            set
-            {
-                if (_imageInfos[0] != value)
-                {
+            set {
+                if (_imageInfos[0] != value) {
                     _imageInfos[0] = value;
                     RaisePropertyChanged("ImageInfo0");
                 }
             }
         }
 
-        public string ImageInfo1
-        {
+        public string ImageInfo1 {
             get { return _imageInfos[1]; }
-            set
-            {
-                if (_imageInfos[1] != value)
-                {
+            set {
+                if (_imageInfos[1] != value) {
                     _imageInfos[1] = value;
                     RaisePropertyChanged("ImageInfo1");
                 }
             }
         }
 
-        public ImageSource ImageSource0
-        {
+        public ImageSource ImageSource0 {
             get { return _imageSources[0]; }
-            set
-            {
-                if (_imageSources[0] != value)
-                {
+            set {
+                if (_imageSources[0] != value) {
                     _imageSources[0] = value;
                     RaisePropertyChanged("ImageSource0");
                 }
             }
         }
 
-        public ImageSource ImageSource1
-        {
+        public ImageSource ImageSource1 {
             get { return _imageSources[1]; }
-            set
-            {
-                if (_imageSources[1] != value)
-                {
+            set {
+                if (_imageSources[1] != value) {
                     _imageSources[1] = value;
                     RaisePropertyChanged("ImageSource1");
                 }
             }
         }
 
-        public ImageSource PreviousImageSource
-        {
+        public ImageSource PreviousImageSource {
             get { return _previousImageSource; }
-            set
-            {
-                if (_previousImageSource != value)
-                {
+            set {
+                if (_previousImageSource != value) {
                     _previousImageSource = value;
                     RaisePropertyChanged("PreviousImageSource");
                 }
             }
         }
 
-        public ImageSource NextImageSource
-        {
+        public ImageSource NextImageSource {
             get { return _nextImageSource; }
-            set
-            {
-                if (_nextImageSource != value)
-                {
+            set {
+                if (_nextImageSource != value) {
                     _nextImageSource = value;
                     RaisePropertyChanged("NextImageSource");
                 }
@@ -178,8 +145,7 @@ namespace PhotoPicker
 
         #region Methods
 
-        public void SetImage(string fileName, List<string> types)
-        {
+        public void SetImage(string fileName, List<string> types) {
             // get all files
             String directory = Path.GetDirectoryName(fileName);
             string[] files = types.SelectMany(f => Directory.GetFiles(directory, f)).ToArray();
@@ -212,70 +178,53 @@ namespace PhotoPicker
             FileSystem.DeleteFile(fileToDelete, UIOption.OnlyErrorDialogs, RecycleOption.SendToRecycleBin);
         }
 
-        private void RaisePropertyChanged(string propertyName)
-        {
-            if (propertyName == "Index")
-            {
+        private void RaisePropertyChanged(string propertyName) {
+            if (propertyName == "Index") {
                 IndexChanged();
                 return;
             }
 
             // take a copy to prevent thread issues
             PropertyChangedEventHandler handler = PropertyChanged;
-            if (handler != null)
-            {
+            if (handler != null) {
                 handler(this, new PropertyChangedEventArgs(propertyName));
             }
         }
 
-        private void IndexChanged()
-        {
+        private void IndexChanged() {
             startAsync();
         }
 
-        private void startAsync()
-        {
-            if (_backgroundWorker.IsBusy == true)
-            {
+        private void startAsync() {
+            if (_backgroundWorker.IsBusy == true) {
                 cancelAsync();
-            }
-            else
-            {
+            } else {
                 // Start the asynchronous operation.
                 _backgroundWorker.RunWorkerAsync();
             }
         }
 
-        private void cancelAsync()
-        {
-            if (_backgroundWorker.WorkerSupportsCancellation == true)
-            {
+        private void cancelAsync() {
+            if (_backgroundWorker.WorkerSupportsCancellation == true) {
                 // Cancel the asynchronous operation.
                 _backgroundWorker.CancelAsync();
             }
         }
 
-        private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
-        {
+        private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e) {
             BackgroundWorker worker = sender as BackgroundWorker;
             ImageSource imageSource = null;
 
-            for (int i = -1; i <= 2; i++)
-            {
-                if (worker.CancellationPending == true)
-                {
+            for (int i = -1; i <= 2; i++) {
+                if (worker.CancellationPending == true) {
                     e.Cancel = true;
                     break;
-                }
-                else
-                {
+                } else {
                     int p = _index + i;
 
                     // load images
-                    if (!_imageCache.TryGetValue(p, out imageSource))
-                    {
-                        if (p >= 0 && p < _files.Length)
-                        {
+                    if (!_imageCache.TryGetValue(p, out imageSource)) {
+                        if (p >= 0 && p < _files.Length) {
                             // Thread.Sleep(10000);
                             imageSource = BitmapFromUri(new Uri(_files[p]));
                             imageSource.Freeze();
@@ -283,34 +232,29 @@ namespace PhotoPicker
                         }
                     }
 
-                    if (p == _index || p == _index + 1)
-                    {
+                    if (p == _index || p == _index + 1) {
                         worker.ReportProgress(p);
                     }
                 }
             }
 
-            if (e.Cancel)
-            {
+            if (e.Cancel) {
                 return;
             }
 
             // load background image source
-            if (_imageCache.TryGetValue(_index - 1, out imageSource))
-            {
+            if (_imageCache.TryGetValue(_index - 1, out imageSource)) {
                 PreviousImageSource = imageSource;
                 Debug.WriteLine("-1) Load " + (_index - 1) + " completed");
             }
 
-            if (_imageCache.TryGetValue(_index + 2, out imageSource))
-            {
+            if (_imageCache.TryGetValue(_index + 2, out imageSource)) {
                 NextImageSource = imageSource;
                 Debug.WriteLine(" 2) Load " + (_index + 2) + " completed");
             }
 
             // clear old images
-            foreach (var item in _imageCache.Where(kvp => kvp.Key < _index - 1 || kvp.Key > _index + 2).ToList())
-            {
+            foreach (var item in _imageCache.Where(kvp => kvp.Key < _index - 1 || kvp.Key > _index + 2).ToList()) {
                 Debug.WriteLine("Remove " + item.Key);
                 _imageCache.Remove(item.Key);
             }
@@ -325,25 +269,21 @@ namespace PhotoPicker
             return bitmap;
         }
 
-        void backgroundWorker1_ProgressChanged(object sender, ProgressChangedEventArgs e)
-        {
+        void backgroundWorker1_ProgressChanged(object sender, ProgressChangedEventArgs e) {
             int p = e.ProgressPercentage;
 
             // set image0
-            if (p == _index)
-            {
+            if (p == _index) {
                 showImage0(p);
             }
 
             // set image1
-            if (p == _index + 1)
-            {
+            if (p == _index + 1) {
                 showImage1(p);
             }
         }
 
-        private void showImage0(int p)
-        {
+        private void showImage0(int p) {
             string fileName = _files[p];
             BitmapImage bi = (BitmapImage)_imageCache[p];
 
@@ -354,8 +294,7 @@ namespace PhotoPicker
             Debug.WriteLine(" 0) Load " + p + " completed");
         }
 
-        private void showImage1(int p)
-        {
+        private void showImage1(int p) {
             if (p >= _files.Length) {
                 ImageInfo1 = null;
                 ImageSource1 = null;
@@ -371,8 +310,7 @@ namespace PhotoPicker
             }
         }
 
-        private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-        {
+        private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e) {
             // do nothing
             Debug.WriteLine("backgroundWorker1_RunWorkerCompleted");
         }
