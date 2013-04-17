@@ -2,6 +2,14 @@
 
 Help to pick the best photo of the same scene
 
+## Screenshot
+
+![Screenshot](https://raw.github.com/xxjapp/PhotoPicker/master/PhotoPicker/Download/PhotoPicker_0.0.1.png "Screenshot")
+
+## Download
+
+- 2013/04/17 [PhotoPicker_0.0.1.zip](https://github.com/xxjapp/PhotoPicker/blob/master/PhotoPicker/Download/PhotoPicker_0.0.1.zip?raw=true)
+
 ## Contributing
 
 1. Fork it
