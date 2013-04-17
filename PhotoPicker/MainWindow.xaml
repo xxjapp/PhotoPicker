@@ -45,17 +45,17 @@
         <Button ToolTip="Open ..." Grid.Column="1" HorizontalAlignment="Left" Margin="5,5,5,5" Grid.Row="0" Width="48" Command="{x:Static commands:AppCommands.OpenFileCommand}">
             <Image Source="Resource\0_open.png"/>
         </Button>
-        <Button ToolTip="Previous" Grid.Column="1" HorizontalAlignment="Left" Margin="65,5,5,5" Grid.Row="0" Width="48" Command="{x:Static commands:AppCommands.PreviousCommand}">
+        <Button ToolTip="Previous" Grid.Column="1" HorizontalAlignment="Right" Margin="5,5,65,5" Grid.Row="0" Width="48" Command="{x:Static commands:AppCommands.PreviousCommand}">
             <Image Source="Resource\1_prev.png"/>
         </Button>
-        <Button ToolTip="Next" Grid.Column="1" HorizontalAlignment="Left" Margin="125,5,5,5" Grid.Row="0" Width="48" Command="{x:Static commands:AppCommands.NextCommand}">
-            <Image Source="Resource\2_next.png"/>
-        </Button>
-        <Button ToolTip="Delete Left" Grid.Column="2" HorizontalAlignment="Left" Margin="5,5,5,5" Grid.Row="0" Width="48" Command="{x:Static commands:AppCommands.DeleteLeftCommand}">
+        <Button ToolTip="Delete Left" Grid.Column="1" HorizontalAlignment="Right" Margin="5,5,5,5" Grid.Row="0" Width="48" Command="{x:Static commands:AppCommands.DeleteLeftCommand}">
             <Image Source="Resource\3_delete_left.png"/>
         </Button>
-        <Button ToolTip="Delete Right" Grid.Column="2" HorizontalAlignment="Left" Margin="65,5,5,5" Grid.Row="0" Width="48" Command="{x:Static commands:AppCommands.DeleteRightCommand}">
+        <Button ToolTip="Delete Right" Grid.Column="2" HorizontalAlignment="Left" Margin="5,5,5,5" Grid.Row="0" Width="48" Command="{x:Static commands:AppCommands.DeleteRightCommand}">
             <Image Source="Resource\4_delete_right.png"/>
+        </Button>
+        <Button ToolTip="Next" Grid.Column="2" HorizontalAlignment="Left" Margin="65,5,5,5" Grid.Row="0" Width="48" Command="{x:Static commands:AppCommands.NextCommand}">
+            <Image Source="Resource\2_next.png"/>
         </Button>
         <Button ToolTip="Settings ..." Grid.Column="2" HorizontalAlignment="Right" Margin="5,5,65,5" Grid.Row="0" Width="48" Command="Help">
             <Image Source="Resource\5_settings.png"/>
