@@ -46,5 +46,29 @@ namespace PhotoPicker.Properties {
                 this["DefaultDeleteDestination"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool SendToRecycleBin {
+            get {
+                return ((bool)(this["SendToRecycleBin"]));
+            }
+            set {
+                this["SendToRecycleBin"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool DefaultSendToRecycleBin {
+            get {
+                return ((bool)(this["DefaultSendToRecycleBin"]));
+            }
+            set {
+                this["DefaultSendToRecycleBin"] = value;
+            }
+        }
     }
 }

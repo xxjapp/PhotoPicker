@@ -23,20 +23,49 @@ namespace PhotoPicker {
 
         private void onInitialized(object sender, EventArgs e) {
             deleteDestinationTextBox.Text = Properties.Settings.Default.DeleteDestination;
+            sendToRecycleBinCheckBox.IsChecked = Properties.Settings.Default.SendToRecycleBin;
+
+            sendToRecycleBinCheckBox_CheckedChanged(sendToRecycleBinCheckBox);
         }
 
         private void Default_Clicked(object sender, RoutedEventArgs e) {
             deleteDestinationTextBox.Text = Properties.Settings.Default.DefaultDeleteDestination;
+            sendToRecycleBinCheckBox.IsChecked = Properties.Settings.Default.DefaultSendToRecycleBin;
+
+            sendToRecycleBinCheckBox_CheckedChanged(sendToRecycleBinCheckBox);
         }
 
         private void OK_Clicked(object sender, RoutedEventArgs e) {
             Properties.Settings.Default.DeleteDestination = deleteDestinationTextBox.Text;
+            Properties.Settings.Default.SendToRecycleBin = (sendToRecycleBinCheckBox.IsChecked == true);
+
             Properties.Settings.Default.Save();
             Close();
         }
 
         private void Cancel_Clicked(object sender, RoutedEventArgs e) {
             Close();
+        }
+
+        private void sendToRecycleBinCheckBox_Clicked(object sender, RoutedEventArgs e) {
+            sendToRecycleBinCheckBox_CheckedChanged(sender);
+        }
+
+        private void sendToRecycleBinCheckBox_CheckedChanged(object sender) {
+            CheckBox checkBox = sender as CheckBox;
+
+            if (checkBox.IsChecked == true) {
+                deleteDestinationTextBox.Text = null;
+                deleteDestinationTextBox.IsEnabled = false;
+            } else {
+                if (Properties.Settings.Default.DeleteDestination.Length > 0) {
+                    deleteDestinationTextBox.Text = Properties.Settings.Default.DeleteDestination;
+                } else {
+                    deleteDestinationTextBox.Text = Properties.Settings.Default.DefaultDeleteDestination;
+                }
+
+                deleteDestinationTextBox.IsEnabled = true;
+            }
         }
     }
 }

@@ -28,6 +28,7 @@ namespace PhotoPicker {
 
         #region Members
         private string[] _files = new string[0];
+        private string _currentDirectory = null;
         private int _index = -1;
         private string[] _imageInfos = new string[2];
         private ImageSource[] _imageSources = new ImageSource[2];
@@ -45,6 +46,16 @@ namespace PhotoPicker {
                 if (_files != value) {
                     _files = value;
                     RaisePropertyChanged("Files");
+                }
+            }
+        }
+
+        public string CurrentDirectory {
+            get { return _currentDirectory; }
+            set {
+                if (_currentDirectory != value) {
+                    _currentDirectory = value;
+                    RaisePropertyChanged("CurrentDirectory");
                 }
             }
         }
@@ -147,8 +158,8 @@ namespace PhotoPicker {
 
         public void SetImage(string fileName, List<string> types) {
             // get all files
-            String directory = Path.GetDirectoryName(fileName);
-            string[] files = types.SelectMany(f => Directory.GetFiles(directory, f)).ToArray();
+            CurrentDirectory = Path.GetDirectoryName(fileName);
+            string[] files = types.SelectMany(f => Directory.GetFiles(CurrentDirectory, f)).ToArray();
             Array.Sort(files);
             Files = files;
 
@@ -174,8 +185,13 @@ namespace PhotoPicker {
             _index = -1;
             Index = oldIndex;
 
-            // remove file to recycle bin
-            FileSystem.DeleteFile(fileToDelete, UIOption.OnlyErrorDialogs, RecycleOption.SendToRecycleBin);
+            if (Properties.Settings.Default.SendToRecycleBin) {
+                // remove file to recycle bin
+                FileSystem.DeleteFile(fileToDelete, UIOption.OnlyErrorDialogs, RecycleOption.SendToRecycleBin);
+            } else {
+                // move file to deleteDestination
+                FileSystem.MoveFile(fileToDelete, Path.Combine(CurrentDirectory, Properties.Settings.Default.DeleteDestination, Path.GetFileName(fileToDelete)));
+            }
         }
 
         private void RaisePropertyChanged(string propertyName) {

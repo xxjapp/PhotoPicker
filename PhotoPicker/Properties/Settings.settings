@@ -8,5 +8,11 @@
     <Setting Name="DefaultDeleteDestination" Type="System.String" Scope="User">
       <Value Profile="(Default)">.\deleted</Value>
     </Setting>
+    <Setting Name="SendToRecycleBin" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="DefaultSendToRecycleBin" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
