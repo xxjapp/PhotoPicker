@@ -55,6 +55,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ZoomBoxPanel.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -98,13 +99,15 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resource\0_open.png" />
-    <Resource Include="Resource\1_prev.png" />
-    <Resource Include="Resource\2_next.png" />
-    <Resource Include="Resource\3_delete_left.png" />
-    <Resource Include="Resource\4_delete_right.png" />
-    <Resource Include="Resource\5_settings.png" />
-    <Resource Include="Resource\6_help.png" />
+    <Resource Include="Resource\actual_size.png" />
+    <Resource Include="Resource\delete_left.png" />
+    <Resource Include="Resource\delete_right.png" />
+    <Resource Include="Resource\fit_page.png" />
+    <Resource Include="Resource\help.png" />
+    <Resource Include="Resource\next.png" />
+    <Resource Include="Resource\open.png" />
+    <Resource Include="Resource\prev.png" />
+    <Resource Include="Resource\settings.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

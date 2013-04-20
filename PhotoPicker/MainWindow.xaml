@@ -1,10 +1,11 @@
 ﻿<Window
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:zb="clr-namespace:ZoomBoxLibrary"
         xmlns:local="clr-namespace:PhotoPicker" x:Class="PhotoPicker.MainWindow"
         xmlns:commands="clr-namespace:PhotoPicker.Commands"
-        Title="MainWindow" Height="600" Width="800" FontFamily="Microsoft YaHei"
-        Icon="Resource/0_open.png">
+        Title="PhotoPicker" Height="600" Width="800" FontFamily="Microsoft YaHei"
+        Icon="Resource/open.png">
 
     <Window.DataContext>
         <local:MainViewModel/>
@@ -18,16 +19,21 @@
         <CommandBinding Command="{x:Static commands:AppCommands.EndCommand}" CanExecute="EndCanExecute" Executed="EndExecuted" />
         <CommandBinding Command="{x:Static commands:AppCommands.DeleteLeftCommand}" CanExecute="DeleteLeftCanExecute" Executed="DeleteLeftExecuted" />
         <CommandBinding Command="{x:Static commands:AppCommands.DeleteRightCommand}" CanExecute="DeleteRightCanExecute" Executed="DeleteRightExecuted" />
+        <CommandBinding Command="{x:Static commands:AppCommands.FitPageCommand}" CanExecute="FitPageCanExecute" Executed="FitPageExecuted" />
+        <CommandBinding Command="{x:Static commands:AppCommands.ActualSizeCommand}" CanExecute="ActualSizeCanExecute" Executed="ActualSizeExecuted" />
         <CommandBinding Command="Help" CanExecute="HelpCanExecute" Executed="HelpExecuted" />
     </Window.CommandBindings>
 
     <Window.InputBindings>
+        <KeyBinding Command="{x:Static commands:AppCommands.OpenFileCommand}" Key="O"/>
         <KeyBinding Command="{x:Static commands:AppCommands.PreviousCommand}" Key="Left"/>
         <KeyBinding Command="{x:Static commands:AppCommands.NextCommand}" Key="Right"/>
         <KeyBinding Command="{x:Static commands:AppCommands.HomeCommand}" Key="Home"/>
         <KeyBinding Command="{x:Static commands:AppCommands.EndCommand}" Key="End"/>
         <KeyBinding Command="{x:Static commands:AppCommands.DeleteLeftCommand}" Key="Left" Modifiers="Control"/>
         <KeyBinding Command="{x:Static commands:AppCommands.DeleteRightCommand}" Key="Right" Modifiers="Control"/>
+        <KeyBinding Command="{x:Static commands:AppCommands.FitPageCommand}" Key="F"/>
+        <KeyBinding Command="{x:Static commands:AppCommands.ActualSizeCommand}" Key="A"/>
     </Window.InputBindings>
 
     <Grid>
@@ -42,31 +48,49 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="80"/>
         </Grid.RowDefinitions>
-        <Button ToolTip="Open ..." Grid.Column="1" HorizontalAlignment="Left" Margin="5,5,5,5" Grid.Row="0" Width="48" Command="{x:Static commands:AppCommands.OpenFileCommand}">
-            <Image Source="Resource\0_open.png"/>
+
+        <Button ToolTip="Open ..." Grid.Column="1" HorizontalAlignment="Left" Margin="0,5,5,5" Grid.Row="0" Width="48" Command="{x:Static commands:AppCommands.OpenFileCommand}">
+            <Image Source="Resource\open.png"/>
         </Button>
-        <Button ToolTip="Previous" Grid.Column="1" HorizontalAlignment="Right" Margin="5,5,65,5" Grid.Row="0" Width="48" Command="{x:Static commands:AppCommands.PreviousCommand}">
-            <Image Source="Resource\1_prev.png"/>
+        <Button ToolTip="Previous" Grid.Column="1" HorizontalAlignment="Left" Margin="50,5,65,5" Grid.Row="0" Width="48" Command="{x:Static commands:AppCommands.PreviousCommand}">
+            <Image Source="Resource\prev.png"/>
         </Button>
-        <Button ToolTip="Delete Left" Grid.Column="1" HorizontalAlignment="Right" Margin="5,5,5,5" Grid.Row="0" Width="48" Command="{x:Static commands:AppCommands.DeleteLeftCommand}">
-            <Image Source="Resource\3_delete_left.png"/>
+        <Button ToolTip="Delete Left" Grid.Column="1" HorizontalAlignment="Left" Margin="100,5,5,5" Grid.Row="0" Width="48" Command="{x:Static commands:AppCommands.DeleteLeftCommand}">
+            <Image Source="Resource\delete_left.png"/>
         </Button>
-        <Button ToolTip="Delete Right" Grid.Column="2" HorizontalAlignment="Left" Margin="5,5,5,5" Grid.Row="0" Width="48" Command="{x:Static commands:AppCommands.DeleteRightCommand}">
-            <Image Source="Resource\4_delete_right.png"/>
+        <Button ToolTip="Delete Right" Grid.Column="1" HorizontalAlignment="Left" Margin="150,5,5,5" Grid.Row="0" Width="48" Command="{x:Static commands:AppCommands.DeleteRightCommand}">
+            <Image Source="Resource\delete_right.png"/>
         </Button>
-        <Button ToolTip="Next" Grid.Column="2" HorizontalAlignment="Left" Margin="65,5,5,5" Grid.Row="0" Width="48" Command="{x:Static commands:AppCommands.NextCommand}">
-            <Image Source="Resource\2_next.png"/>
+        <Button ToolTip="Next" Grid.Column="1" HorizontalAlignment="Left" Margin="200,5,5,5" Grid.Row="0" Width="48" Command="{x:Static commands:AppCommands.NextCommand}">
+            <Image Source="Resource\next.png"/>
         </Button>
-        <Button ToolTip="Settings ..." Grid.Column="2" HorizontalAlignment="Right" Margin="5,5,65,5" Grid.Row="0" Width="48" Command="Help">
-            <Image Source="Resource\5_settings.png"/>
+
+        <Button ToolTip="Fit Page" Grid.Column="2" HorizontalAlignment="Left" Margin="5,5,5,5" Grid.Row="0" Width="48" Command="{x:Static commands:AppCommands.FitPageCommand}">
+            <Image Source="Resource\fit_page.png"/>
         </Button>
-        <Button ToolTip="Help ..." Grid.Column="2" HorizontalAlignment="Right" Margin="5,5,5,5" Grid.Row="0" Width="48" Command="Help">
-            <Image Source="Resource\6_help.png"/>
+
+        <Button ToolTip="Actual Size" Grid.Column="2" HorizontalAlignment="Left" Margin="55,5,5,5" Grid.Row="0" Width="48" Command="{x:Static commands:AppCommands.ActualSizeCommand}">
+            <Image Source="Resource\actual_size.png"/>
         </Button>
-        <Image Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" Margin="5,5,5,5" Source="{Binding PreviousImageSource}" VerticalAlignment="Center" Visibility="Hidden"/>
-        <Image Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" Margin="5,5,5,5" Source="{Binding ImageSource0}" VerticalAlignment="Center"/>
-        <Image Grid.Row="1" Grid.Column="2" HorizontalAlignment="Center" Margin="5,5,5,5" Source="{Binding NextImageSource}" VerticalAlignment="Center" Visibility="Hidden"/>
-        <Image Grid.Row="1" Grid.Column="2" HorizontalAlignment="Center" Margin="5,5,5,5" Source="{Binding ImageSource1}" VerticalAlignment="Center"/>
+
+        <Button ToolTip="Settings ..." Grid.Column="2" HorizontalAlignment="Right" Margin="5,5,50,5" Grid.Row="0" Width="48" Command="Help">
+            <Image Source="Resource\settings.png"/>
+        </Button>
+        <Button ToolTip="Help ..." Grid.Column="2" HorizontalAlignment="Right" Margin="5,5,0,5" Grid.Row="0" Width="48" Command="Help">
+            <Image Source="Resource\help.png"/>
+        </Button>
+
+        <Image Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" Margin="2,2,2,2" Source="{Binding PreviousImageSource}" VerticalAlignment="Center" Visibility="Hidden"/>
+
+        <zb:ZoomBoxPanel Margin="2,2,2,2" ZoomMode="FitPage" x:Name="zoomBox0" Grid.Row="1" Grid.Column="1" MinZoom="0.01" MaxZoom="10000" MouseMode="Pan" WheelMode="Zoom">
+            <Image Source="{Binding ImageSource0}"/>
+        </zb:ZoomBoxPanel>
+        <zb:ZoomBoxPanel Margin="2,2,2,2" ZoomMode="FitPage" x:Name="zoomBox1" Grid.Row="1" Grid.Column="2" MinZoom="0.01" MaxZoom="10000" MouseMode="Pan" WheelMode="Zoom">
+            <Image Source="{Binding ImageSource1}"/>
+        </zb:ZoomBoxPanel>
+
+        <Image Grid.Row="1" Grid.Column="2" HorizontalAlignment="Center" Margin="2,2,2,2" Source="{Binding NextImageSource}" VerticalAlignment="Center" Visibility="Hidden"/>
+
         <Label Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center">
             <TextBlock Text="{Binding ImageInfo0}"/>
         </Label>

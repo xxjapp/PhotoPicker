@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.ComponentModel;
 using System.IO;
 using System.Windows.Forms;
+using System.Diagnostics;
 
 namespace PhotoPicker {
     /// <summary>
@@ -26,7 +27,12 @@ namespace PhotoPicker {
         #endregion
 
         public MainWindow() {
-            InitializeComponent();
+            try {
+                InitializeComponent();
+            } catch (Exception e) {
+                Debug.WriteLine(e.ToString());
+                throw e;
+            }
 
             //  We have declared the view model instance declaratively in the xaml.
             //  Get the reference to it here, so we can use it in the button click event.
@@ -164,6 +170,28 @@ namespace PhotoPicker {
         private void DeleteRightExecuted(object sender, RoutedEventArgs e) {
             e.Handled = true;
             _viewModel.DeleteFile(_viewModel.Index + 1);
+        }
+
+        private void FitPageCanExecute(object sender, CanExecuteRoutedEventArgs e) {
+            e.Handled = true;
+            e.CanExecute = (_viewModel != null) && (_viewModel.Files.Length > 0);
+        }
+
+        private void FitPageExecuted(object sender, RoutedEventArgs e) {
+            e.Handled = true;
+            zoomBox0.IsZoomMode_FitPage = true;
+            zoomBox1.IsZoomMode_FitPage = true;
+        }
+
+        private void ActualSizeCanExecute(object sender, CanExecuteRoutedEventArgs e) {
+            e.Handled = true;
+            e.CanExecute = (_viewModel != null) && (_viewModel.Files.Length > 0);
+        }
+
+        private void ActualSizeExecuted(object sender, RoutedEventArgs e) {
+            e.Handled = true;
+            zoomBox0.IsZoomMode_ActualSize = true;
+            zoomBox1.IsZoomMode_ActualSize = true;
         }
 
         private void HelpCanExecute(object sender, CanExecuteRoutedEventArgs e) {
