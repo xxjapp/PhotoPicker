@@ -4,11 +4,12 @@ Help to pick the best photo of the same scene
 
 ## Screenshot
 
-![Screenshot](https://raw.github.com/xxjapp/PhotoPicker/master/PhotoPicker/Download/PhotoPicker_0.0.1.png "Screenshot")
+![Screenshot](https://raw.github.com/xxjapp/PhotoPicker/master/Download/PhotoPicker_0.0.2.png "Screenshot")
 
 ## Download
 
-- 2013/04/17 [PhotoPicker_0.0.1.zip](https://github.com/xxjapp/PhotoPicker/blob/master/PhotoPicker/Download/PhotoPicker_0.0.1.zip?raw=true)
+- 2013/04/20 [PhotoPicker_0.0.2.zip](https://github.com/xxjapp/PhotoPicker/blob/master/Download/PhotoPicker_0.0.2.zip?raw=true)
+- 2013/04/17 [PhotoPicker_0.0.1.zip](https://github.com/xxjapp/PhotoPicker/blob/master/Download/PhotoPicker_0.0.1.zip?raw=true)
 
 ## Contributing
 
