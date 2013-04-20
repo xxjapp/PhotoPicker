@@ -21,6 +21,7 @@
         <CommandBinding Command="{x:Static commands:AppCommands.DeleteRightCommand}" CanExecute="DeleteRightCanExecute" Executed="DeleteRightExecuted" />
         <CommandBinding Command="{x:Static commands:AppCommands.FitPageCommand}" CanExecute="FitPageCanExecute" Executed="FitPageExecuted" />
         <CommandBinding Command="{x:Static commands:AppCommands.ActualSizeCommand}" CanExecute="ActualSizeCanExecute" Executed="ActualSizeExecuted" />
+        <CommandBinding Command="{x:Static commands:AppCommands.SettingsCommand}" CanExecute="SettingsCanExecute" Executed="SettingsExecuted" />
         <CommandBinding Command="Help" CanExecute="HelpCanExecute" Executed="HelpExecuted" />
     </Window.CommandBindings>
 
@@ -34,6 +35,8 @@
         <KeyBinding Command="{x:Static commands:AppCommands.DeleteRightCommand}" Key="Right" Modifiers="Control"/>
         <KeyBinding Command="{x:Static commands:AppCommands.FitPageCommand}" Key="F"/>
         <KeyBinding Command="{x:Static commands:AppCommands.ActualSizeCommand}" Key="A"/>
+        <KeyBinding Command="{x:Static commands:AppCommands.SettingsCommand}" Key="S"/>
+        <KeyBinding Command="Help" Key="H"/>
     </Window.InputBindings>
 
     <Grid>
@@ -55,14 +58,14 @@
         <Button ToolTip="Previous" Grid.Column="1" HorizontalAlignment="Left" Margin="50,5,5,5" Grid.Row="0" Width="48" Command="{x:Static commands:AppCommands.PreviousCommand}">
             <Image Source="Resource\prev.png"/>
         </Button>
-        <Button ToolTip="Delete Left" Grid.Column="1" HorizontalAlignment="Left" Margin="100,5,5,5" Grid.Row="0" Width="48" Command="{x:Static commands:AppCommands.DeleteLeftCommand}">
+        <Button ToolTip="Next" Grid.Column="1" HorizontalAlignment="Left" Margin="100,5,5,5" Grid.Row="0" Width="48" Command="{x:Static commands:AppCommands.NextCommand}">
+            <Image Source="Resource\next.png"/>
+        </Button>
+        <Button ToolTip="Delete Left" Grid.Column="1" HorizontalAlignment="Left" Margin="150,5,5,5" Grid.Row="0" Width="48" Command="{x:Static commands:AppCommands.DeleteLeftCommand}">
             <Image Source="Resource\delete_left.png"/>
         </Button>
-        <Button ToolTip="Delete Right" Grid.Column="1" HorizontalAlignment="Left" Margin="150,5,5,5" Grid.Row="0" Width="48" Command="{x:Static commands:AppCommands.DeleteRightCommand}">
+        <Button ToolTip="Delete Right" Grid.Column="1" HorizontalAlignment="Left" Margin="200,5,5,5" Grid.Row="0" Width="48" Command="{x:Static commands:AppCommands.DeleteRightCommand}">
             <Image Source="Resource\delete_right.png"/>
-        </Button>
-        <Button ToolTip="Next" Grid.Column="1" HorizontalAlignment="Left" Margin="200,5,5,5" Grid.Row="0" Width="48" Command="{x:Static commands:AppCommands.NextCommand}">
-            <Image Source="Resource\next.png"/>
         </Button>
         <Button ToolTip="Fit Page" Grid.Column="2" HorizontalAlignment="Left" Margin="5,5,5,5" Grid.Row="0" Width="48" Command="{x:Static commands:AppCommands.FitPageCommand}">
             <Image Source="Resource\fit_page.png"/>
@@ -70,7 +73,7 @@
         <Button ToolTip="Actual Size" Grid.Column="2" HorizontalAlignment="Left" Margin="55,5,5,5" Grid.Row="0" Width="48" Command="{x:Static commands:AppCommands.ActualSizeCommand}">
             <Image Source="Resource\actual_size.png"/>
         </Button>
-        <Button ToolTip="Settings ..." Grid.Column="2" HorizontalAlignment="Right" Margin="5,5,50,5" Grid.Row="0" Width="48" Command="Help">
+        <Button ToolTip="Settings ..." Grid.Column="2" HorizontalAlignment="Right" Margin="5,5,50,5" Grid.Row="0" Width="48" Command="{x:Static commands:AppCommands.SettingsCommand}">
             <Image Source="Resource\settings.png"/>
         </Button>
         <Button ToolTip="Help ..." Grid.Column="2" HorizontalAlignment="Right" Margin="5,5,0,5" Grid.Row="0" Width="48" Command="Help">

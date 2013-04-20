@@ -194,14 +194,24 @@ namespace PhotoPicker {
             zoomBox1.IsZoomMode_ActualSize = true;
         }
 
-        private void HelpCanExecute(object sender, CanExecuteRoutedEventArgs e) {
+        private void SettingsCanExecute(object sender, CanExecuteRoutedEventArgs e) {
+            e.Handled = true;
             e.CanExecute = true;
+        }
+
+        private void SettingsExecuted(object sender, RoutedEventArgs e) {
             e.Handled = true;
         }
 
-        private void HelpExecuted(object sender, ExecutedRoutedEventArgs e) {
-            System.Windows.Forms.MessageBox.Show("Hey, I'm some help.");
+        private void HelpCanExecute(object sender, CanExecuteRoutedEventArgs e) {
             e.Handled = true;
+            e.CanExecute = true;
+        }
+
+        private void HelpExecuted(object sender, ExecutedRoutedEventArgs e) {
+            e.Handled = true;
+            HelpWindow helpWindow = new HelpWindow();
+            helpWindow.Show();
         }
     }
 }

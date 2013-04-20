@@ -1,0 +1,109 @@
+﻿<Window x:Class="PhotoPicker.HelpWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="HelpWindow" Height="750" Width="600" FontFamily="Microsoft YaHei-X"
+        Icon="Resource/help.png">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="7"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="7"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="7"/>
+            <ColumnDefinition Width="80"/>
+            <ColumnDefinition Width="60"/>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="7"/>
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Grid.Row="1" Grid.Column="1" Margin="2,2,2,2" VerticalAlignment="Center" FontWeight="Bold" Text="Command"/>
+        <TextBlock Grid.Row="1" Grid.Column="2" Margin="2,2,2,2" VerticalAlignment="Center" FontWeight="Bold" Text="Button" />
+        <TextBlock Grid.Row="1" Grid.Column="3" Margin="2,2,2,2" VerticalAlignment="Center" FontWeight="Bold" Text="Shortcut" />
+        <TextBlock Grid.Row="1" Grid.Column="4" Margin="2,2,2,2" VerticalAlignment="Center" FontWeight="Bold" Text="Descriptioin" />
+
+        <TextBlock Grid.Row="2" Grid.Column="1" Margin="2,2,2,2" VerticalAlignment="Center" Text="Open ..." />
+        <Button Grid.Row="2" Grid.Column="2" Width="48" Height="48">
+            <Image Source="Resource\open.png"/>
+        </Button>
+        <TextBlock Grid.Row="2" Grid.Column="3" Margin="2,2,2,2" VerticalAlignment="Center" HorizontalAlignment="Center" Text="O"/>
+        <TextBlock Grid.Row="2" Grid.Column="4" Margin="2,2,2,2" VerticalAlignment="Center" TextWrapping="Wrap" Text="Open a file in a specific folder to start a new pick session"/>
+
+        <TextBlock Grid.Row="3" Grid.Column="1" Margin="2,2,2,2" VerticalAlignment="Center" Text="Previous" />
+        <Button Grid.Row="3" Grid.Column="2" Width="48" Height="48">
+            <Image Source="Resource\prev.png"/>
+        </Button>
+        <TextBlock Grid.Row="3" Grid.Column="3" Margin="2,2,2,2" VerticalAlignment="Center" HorizontalAlignment="Center" Text="Left"/>
+        <TextBlock Grid.Row="3" Grid.Column="4" Margin="2,2,2,2" VerticalAlignment="Center" TextWrapping="Wrap" Text="Goto previous"/>
+
+        <TextBlock Grid.Row="4" Grid.Column="1" Margin="2,2,2,2" VerticalAlignment="Center" Text="Next" />
+        <Button Grid.Row="4" Grid.Column="2" Width="48" Height="48">
+            <Image Source="Resource\next.png"/>
+        </Button>
+        <TextBlock Grid.Row="4" Grid.Column="3" Margin="2,2,2,2" VerticalAlignment="Center" HorizontalAlignment="Center" Text="Right"/>
+        <TextBlock Grid.Row="4" Grid.Column="4" Margin="2,2,2,2" VerticalAlignment="Center" TextWrapping="Wrap" Text="Goto next"/>
+
+        <TextBlock Grid.Row="5" Grid.Column="1" Margin="2,2,2,2" VerticalAlignment="Center" Text="Home" />
+        <TextBlock Grid.Row="5" Grid.Column="3" Margin="2,2,2,2" VerticalAlignment="Center" HorizontalAlignment="Center" Text="Home"/>
+        <TextBlock Grid.Row="5" Grid.Column="4" Margin="2,2,2,2" VerticalAlignment="Center" TextWrapping="Wrap" Text="Goto home"/>
+
+        <TextBlock Grid.Row="6" Grid.Column="1" Margin="2,2,2,2" VerticalAlignment="Center" Text="End" />
+        <TextBlock Grid.Row="6" Grid.Column="3" Margin="2,2,2,2" VerticalAlignment="Center" HorizontalAlignment="Center" Text="End"/>
+        <TextBlock Grid.Row="6" Grid.Column="4" Margin="2,2,2,2" VerticalAlignment="Center" TextWrapping="Wrap" Text="Goto end"/>
+
+        <TextBlock Grid.Row="7" Grid.Column="1" Margin="2,2,2,2" VerticalAlignment="Center" Text="Delete Left" />
+        <Button Grid.Row="7" Grid.Column="2" Width="48" Height="48">
+            <Image Source="Resource\delete_left.png"/>
+        </Button>
+        <TextBlock Grid.Row="7" Grid.Column="3" Margin="2,2,2,2" VerticalAlignment="Center" HorizontalAlignment="Center" Text="Ctrl + Left"/>
+        <TextBlock Grid.Row="7" Grid.Column="4" Margin="2,2,2,2" VerticalAlignment="Center" TextWrapping="Wrap" Text="Delete left photo"/>
+
+        <TextBlock Grid.Row="8" Grid.Column="1" Margin="2,2,2,2" VerticalAlignment="Center" Text="Delete Right" />
+        <Button Grid.Row="8" Grid.Column="2" Width="48" Height="48">
+            <Image Source="Resource\delete_right.png"/>
+        </Button>
+        <TextBlock Grid.Row="8" Grid.Column="3" Margin="2,2,2,2" VerticalAlignment="Center" HorizontalAlignment="Center" Text="Ctrl + Right"/>
+        <TextBlock Grid.Row="8" Grid.Column="4" Margin="2,2,2,2" VerticalAlignment="Center" TextWrapping="Wrap" Text="Delete right photo"/>
+
+        <TextBlock Grid.Row="9" Grid.Column="1" Margin="2,2,2,2" VerticalAlignment="Center" Text="Fit Page" />
+        <Button Grid.Row="9" Grid.Column="2" Width="48" Height="48">
+            <Image Source="Resource\fit_page.png"/>
+        </Button>
+        <TextBlock Grid.Row="9" Grid.Column="3" Margin="2,2,2,2" VerticalAlignment="Center" HorizontalAlignment="Center" Text="F"/>
+        <TextBlock Grid.Row="9" Grid.Column="4" Margin="2,2,2,2" VerticalAlignment="Center" TextWrapping="Wrap" Text="Show photo in fit-page mode"/>
+
+        <TextBlock Grid.Row="10" Grid.Column="1" Margin="2,2,2,2" VerticalAlignment="Center" Text="Actual Size" />
+        <Button Grid.Row="10" Grid.Column="2" Width="48" Height="48">
+            <Image Source="Resource\actual_size.png"/>
+        </Button>
+        <TextBlock Grid.Row="10" Grid.Column="3" Margin="2,2,2,2" VerticalAlignment="Center" HorizontalAlignment="Center" Text="A"/>
+        <TextBlock Grid.Row="10" Grid.Column="4" Margin="2,2,2,2" VerticalAlignment="Center" TextWrapping="Wrap" Text="Show photo in actual-size mode"/>
+
+        <TextBlock Grid.Row="11" Grid.Column="1" Margin="2,2,2,2" VerticalAlignment="Center" Text="Settings ..." />
+        <Button Grid.Row="11" Grid.Column="2" Width="48" Height="48">
+            <Image Source="Resource\settings.png"/>
+        </Button>
+        <TextBlock Grid.Row="11" Grid.Column="3" Margin="2,2,2,2" VerticalAlignment="Center" HorizontalAlignment="Center" Text="S"/>
+        <TextBlock Grid.Row="11" Grid.Column="4" Margin="2,2,2,2" VerticalAlignment="Center" TextWrapping="Wrap" Text="Show settings dialog"/>
+
+        <TextBlock Grid.Row="12" Grid.Column="1" Margin="2,2,2,2" VerticalAlignment="Center" Text="Help ..." />
+        <Button Grid.Row="12" Grid.Column="2" Width="48" Height="48">
+            <Image Source="Resource\help.png"/>
+        </Button>
+        <TextBlock Grid.Row="12" Grid.Column="3" Margin="2,2,2,2" VerticalAlignment="Center" HorizontalAlignment="Center" Text="H"/>
+        <TextBlock Grid.Row="12" Grid.Column="4" Margin="2,2,2,2" VerticalAlignment="Center" TextWrapping="Wrap" Text="Show help window"/>
+
+    </Grid>
+</Window>
