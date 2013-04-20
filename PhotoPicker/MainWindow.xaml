@@ -64,15 +64,12 @@
         <Button ToolTip="Next" Grid.Column="1" HorizontalAlignment="Left" Margin="200,5,5,5" Grid.Row="0" Width="48" Command="{x:Static commands:AppCommands.NextCommand}">
             <Image Source="Resource\next.png"/>
         </Button>
-
         <Button ToolTip="Fit Page" Grid.Column="2" HorizontalAlignment="Left" Margin="5,5,5,5" Grid.Row="0" Width="48" Command="{x:Static commands:AppCommands.FitPageCommand}">
             <Image Source="Resource\fit_page.png"/>
         </Button>
-
         <Button ToolTip="Actual Size" Grid.Column="2" HorizontalAlignment="Left" Margin="55,5,5,5" Grid.Row="0" Width="48" Command="{x:Static commands:AppCommands.ActualSizeCommand}">
             <Image Source="Resource\actual_size.png"/>
         </Button>
-
         <Button ToolTip="Settings ..." Grid.Column="2" HorizontalAlignment="Right" Margin="5,5,50,5" Grid.Row="0" Width="48" Command="Help">
             <Image Source="Resource\settings.png"/>
         </Button>
@@ -81,14 +78,12 @@
         </Button>
 
         <Image Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" Margin="2,2,2,2" Source="{Binding PreviousImageSource}" VerticalAlignment="Center" Visibility="Hidden"/>
-
         <zb:ZoomBoxPanel Margin="2,2,2,2" ZoomMode="FitPage" x:Name="zoomBox0" Grid.Row="1" Grid.Column="1" MinZoom="0.01" MaxZoom="10000" MouseMode="Pan" WheelMode="Zoom">
             <Image Source="{Binding ImageSource0}"/>
         </zb:ZoomBoxPanel>
         <zb:ZoomBoxPanel Margin="2,2,2,2" ZoomMode="FitPage" x:Name="zoomBox1" Grid.Row="1" Grid.Column="2" MinZoom="0.01" MaxZoom="10000" MouseMode="Pan" WheelMode="Zoom">
             <Image Source="{Binding ImageSource1}"/>
         </zb:ZoomBoxPanel>
-
         <Image Grid.Row="1" Grid.Column="2" HorizontalAlignment="Center" Margin="2,2,2,2" Source="{Binding NextImageSource}" VerticalAlignment="Center" Visibility="Hidden"/>
 
         <Label Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center">
@@ -97,6 +92,5 @@
         <Label Grid.Row="2" Grid.Column="2" HorizontalAlignment="Left"  VerticalAlignment="Center">
             <TextBlock Text="{Binding ImageInfo1}"/>
         </Label>
-
     </Grid>
 </Window>
