@@ -768,8 +768,12 @@ namespace ZoomBoxLibrary
             {
                 double offset = 0;
                 offset = (parent - (child * ZoomFactor)) / 2;
-                if (offset > margin)
-                    return offset;
+                
+                // if (offset > margin)
+                //    return offset;
+
+                // return offset directly to make image centered
+                return offset;
             }
             return margin;
         }
