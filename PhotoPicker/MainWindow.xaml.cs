@@ -201,6 +201,10 @@ namespace PhotoPicker {
 
         private void SettingsExecuted(object sender, RoutedEventArgs e) {
             e.Handled = true;
+
+            SettingsWindow settingsWindows = new SettingsWindow();
+            settingsWindows.Owner = this;
+            settingsWindows.ShowDialog();
         }
 
         private void HelpCanExecute(object sender, CanExecuteRoutedEventArgs e) {
@@ -210,7 +214,9 @@ namespace PhotoPicker {
 
         private void HelpExecuted(object sender, ExecutedRoutedEventArgs e) {
             e.Handled = true;
+
             HelpWindow helpWindow = new HelpWindow();
+            helpWindow.Owner = this;
             helpWindow.Show();
         }
     }
