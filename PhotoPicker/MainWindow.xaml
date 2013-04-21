@@ -4,7 +4,8 @@
         xmlns:zb="clr-namespace:ZoomBoxLibrary"
         xmlns:local="clr-namespace:PhotoPicker" x:Class="PhotoPicker.MainWindow"
         xmlns:commands="clr-namespace:PhotoPicker.Commands"
-        Title="PhotoPicker" Height="600" Width="800" FontFamily="Microsoft YaHei"
+        Title="PhotoPicker" Height="600" Width="800"
+        FontFamily="Microsoft YaHei"
         Icon="Resource/open.png">
 
     <Window.DataContext>
