@@ -9,6 +9,7 @@
         Title="PhotoPicker" Height="600" Width="800"
         FontFamily="Microsoft YaHei"
         Icon="Resource/open.png" 
+        WindowStartupLocation="CenterScreen"
         Activated="OnActivated">
 
     <Window.DataContext>
