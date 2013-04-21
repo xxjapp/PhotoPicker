@@ -30,6 +30,7 @@ namespace PhotoPicker {
         private string[] _files = new string[0];
         private string _currentDirectory = null;
         private int _index = -1;
+        private int _progress = 0;
         private string[] _imageInfos = new string[2];
         private ImageSource[] _imageSources = new ImageSource[2];
         private ImageSource _previousImageSource = null;
@@ -84,6 +85,16 @@ namespace PhotoPicker {
                 if (_index != newValue) {
                     _index = newValue;
                     RaisePropertyChanged("Index");
+                }
+            }
+        }
+
+        public int Progress {
+            get { return _progress; }
+            set {
+                if (_progress != value) {
+                    _progress = value;
+                    RaisePropertyChanged("Progress");
                 }
             }
         }
@@ -209,6 +220,14 @@ namespace PhotoPicker {
 
         private void IndexChanged() {
             startAsync();
+
+            if (_files.Length == 0) {
+                Progress = 0;
+            } else if (_files.Length <= 2) {
+                Progress = 100;
+            } else {
+                Progress = (int)(100.0 * (double)Index / ((double)_files.Length - 2));
+            }
         }
 
         private void startAsync() {
