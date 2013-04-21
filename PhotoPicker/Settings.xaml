@@ -5,26 +5,35 @@
         WindowStartupLocation="CenterOwner"
         FontFamily="Microsoft YaHei"
         Icon="Resource/settings.png" Initialized="onInitialized">
+
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
-            <RowDefinition Height="28" />
+            <RowDefinition Height="30" />
         </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="*" />
-        </Grid.ColumnDefinitions>
-        
-        <Label Grid.Row="0" Grid.Column="0" Content="Move deleted file to:"/>
-        <TextBox Grid.Row="0" Grid.Column="1" Margin="3" x:Name="deleteDestinationTextBox"/>
 
-        <CheckBox Grid.Row="1" Grid.Column="1" Margin="3" HorizontalAlignment="Left" VerticalAlignment="Center" Content="Send to recycle bin" x:Name="sendToRecycleBinCheckBox" Click="sendToRecycleBinCheckBox_Clicked"/>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
 
-        <Button Grid.Row="4" Grid.Column="1" HorizontalAlignment="Right" MinWidth="80" Margin="3,3,180,3" Content="OK" Click="OK_Clicked"/>
-        <Button Grid.Row="4" Grid.Column="1" HorizontalAlignment="Right" MinWidth="80" Margin="3,3,90,3" Content="Default" Click="Default_Clicked"/>
-        <Button Grid.Row="4" Grid.Column="1" HorizontalAlignment="Right" MinWidth="80" Margin="3" Content="Cancel" Click="Cancel_Clicked"/>
+            <Label Grid.Row="0" Grid.Column="0" Content="Move deleted file to:"/>
+            <TextBox Grid.Row="0" Grid.Column="1" Margin="3" x:Name="deleteDestinationTextBox"/>
+
+            <CheckBox Grid.Row="1" Grid.Column="1" Margin="3" HorizontalAlignment="Left" VerticalAlignment="Center" Content="Send to recycle bin" x:Name="sendToRecycleBinCheckBox" Click="sendToRecycleBinCheckBox_Clicked"/>
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <Button HorizontalAlignment="Right" MinWidth="80" Margin="3,3,183,3" Content="OK" Click="OK_Clicked"/>
+            <Button HorizontalAlignment="Right" MinWidth="80" Margin="3,3,93,3" Content="Default" Click="Default_Clicked"/>
+            <Button HorizontalAlignment="Right" MinWidth="80" Margin="3" Content="Cancel" Click="Cancel_Clicked"/>
+        </Grid>
     </Grid>
 </Window>

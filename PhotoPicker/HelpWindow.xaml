@@ -30,10 +30,10 @@
             <ColumnDefinition Width="7"/>
         </Grid.ColumnDefinitions>
 
-        <TextBlock Grid.Row="1" Grid.Column="1" Margin="2,2,2,2" VerticalAlignment="Center" FontWeight="Bold" Text="Command"/>
-        <TextBlock Grid.Row="1" Grid.Column="2" Margin="2,2,2,2" VerticalAlignment="Center" FontWeight="Bold" Text="Button" />
-        <TextBlock Grid.Row="1" Grid.Column="3" Margin="2,2,2,2" VerticalAlignment="Center" FontWeight="Bold" Text="Shortcut" />
-        <TextBlock Grid.Row="1" Grid.Column="4" Margin="2,2,2,2" VerticalAlignment="Center" FontWeight="Bold" Text="Descriptioin" />
+        <TextBlock Grid.Row="1" Grid.Column="1" Margin="2,2,2,2" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold" Text="Command"/>
+        <TextBlock Grid.Row="1" Grid.Column="2" Margin="2,2,2,2" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold" Text="Button" />
+        <TextBlock Grid.Row="1" Grid.Column="3" Margin="2,2,2,2" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold" Text="Shortcut" />
+        <TextBlock Grid.Row="1" Grid.Column="4" Margin="2,2,2,2" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold" Text="Descriptioin" />
 
         <TextBlock Grid.Row="2" Grid.Column="1" Margin="2,2,2,2" VerticalAlignment="Center" Text="Open ..." />
         <Button Grid.Row="2" Grid.Column="2" Width="48" Height="48">
