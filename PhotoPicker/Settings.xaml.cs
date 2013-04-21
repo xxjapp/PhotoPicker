@@ -24,6 +24,7 @@ namespace PhotoPicker {
         private void onInitialized(object sender, EventArgs e) {
             deleteDestinationTextBox.Text = Properties.Settings.Default.DeleteDestination;
             sendToRecycleBinCheckBox.IsChecked = Properties.Settings.Default.SendToRecycleBin;
+            rememberLastPositionCheckBox.IsChecked = Properties.Settings.Default.RememberLastPosition;
 
             sendToRecycleBinCheckBox_CheckedChanged(sendToRecycleBinCheckBox);
         }
@@ -31,6 +32,7 @@ namespace PhotoPicker {
         private void Default_Clicked(object sender, RoutedEventArgs e) {
             deleteDestinationTextBox.Text = Properties.Settings.Default.DefaultDeleteDestination;
             sendToRecycleBinCheckBox.IsChecked = Properties.Settings.Default.DefaultSendToRecycleBin;
+            rememberLastPositionCheckBox.IsChecked = Properties.Settings.Default.DefaultRememberLastPosition;
 
             sendToRecycleBinCheckBox_CheckedChanged(sendToRecycleBinCheckBox);
         }
@@ -38,6 +40,7 @@ namespace PhotoPicker {
         private void OK_Clicked(object sender, RoutedEventArgs e) {
             Properties.Settings.Default.DeleteDestination = deleteDestinationTextBox.Text;
             Properties.Settings.Default.SendToRecycleBin = (sendToRecycleBinCheckBox.IsChecked == true);
+            Properties.Settings.Default.RememberLastPosition = (rememberLastPositionCheckBox.IsChecked == true);
 
             Properties.Settings.Default.Save();
             Close();

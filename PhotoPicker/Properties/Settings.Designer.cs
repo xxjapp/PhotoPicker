@@ -70,5 +70,65 @@ namespace PhotoPicker.Properties {
                 this["DefaultSendToRecycleBin"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool RememberLastPosition {
+            get {
+                return ((bool)(this["RememberLastPosition"]));
+            }
+            set {
+                this["RememberLastPosition"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool DefaultRememberLastPosition {
+            get {
+                return ((bool)(this["DefaultRememberLastPosition"]));
+            }
+            set {
+                this["DefaultRememberLastPosition"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string LastOpenedDirectory {
+            get {
+                return ((string)(this["LastOpenedDirectory"]));
+            }
+            set {
+                this["LastOpenedDirectory"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int LastOpenedDirectoryIndex {
+            get {
+                return ((int)(this["LastOpenedDirectoryIndex"]));
+            }
+            set {
+                this["LastOpenedDirectoryIndex"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int LastOpenedFilterIndex {
+            get {
+                return ((int)(this["LastOpenedFilterIndex"]));
+            }
+            set {
+                this["LastOpenedFilterIndex"] = value;
+            }
+        }
     }
 }

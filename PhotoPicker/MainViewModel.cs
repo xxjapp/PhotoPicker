@@ -57,6 +57,9 @@ namespace PhotoPicker {
                 if (_currentDirectory != value) {
                     _currentDirectory = value;
                     RaisePropertyChanged("CurrentDirectory");
+
+                    Properties.Settings.Default.LastOpenedDirectory = CurrentDirectory;
+                    Properties.Settings.Default.Save();
                 }
             }
         }
@@ -85,6 +88,9 @@ namespace PhotoPicker {
                 if (_index != newValue) {
                     _index = newValue;
                     RaisePropertyChanged("Index");
+
+                    Properties.Settings.Default.LastOpenedDirectoryIndex = Index;
+                    Properties.Settings.Default.Save();
                 }
             }
         }
@@ -167,11 +173,30 @@ namespace PhotoPicker {
 
         #region Methods
 
+        public void SetDirectory(string directoryPath, List<string> types, int index) {
+            // get all files
+            CurrentDirectory = directoryPath;
+            string[] files = types.SelectMany(f => Directory.GetFiles(CurrentDirectory, f)).ToArray();
+            Array.Sort(files);
+
+            // set files
+            Files = files;
+
+            // clear image cache
+            _imageCache.Clear();
+
+            // set index
+            _index = -1;
+            Index = index;
+        }
+
         public void SetImage(string fileName, List<string> types) {
             // get all files
             CurrentDirectory = Path.GetDirectoryName(fileName);
             string[] files = types.SelectMany(f => Directory.GetFiles(CurrentDirectory, f)).ToArray();
             Array.Sort(files);
+
+            // set files
             Files = files;
 
             // clear image cache

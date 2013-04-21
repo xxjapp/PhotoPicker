@@ -8,7 +8,8 @@
         xmlns:commands="clr-namespace:PhotoPicker.Commands"
         Title="PhotoPicker" Height="600" Width="800"
         FontFamily="Microsoft YaHei"
-        Icon="Resource/open.png">
+        Icon="Resource/open.png" 
+        Activated="OnActivated">
 
     <Window.DataContext>
         <local:MainViewModel/>

@@ -39,6 +39,28 @@ namespace PhotoPicker {
             _viewModel = (MainViewModel)base.DataContext;
         }
 
+        private void OnActivated(object sender, EventArgs e) {
+            if (rememberLastPosition() && _viewModel.Files.Length == 0) {
+                _viewModel.SetDirectory(getLastOpenedDirectory(), getTypes(getLastOpenedFilterIndex() - 1), getLastOpenedDirectoryIndex());
+            }
+        }
+
+        private bool rememberLastPosition() {
+            return Properties.Settings.Default.RememberLastPosition;
+        }
+
+        private string getLastOpenedDirectory() {
+            return Properties.Settings.Default.LastOpenedDirectory;
+        }
+
+        private int getLastOpenedFilterIndex() {
+            return Properties.Settings.Default.LastOpenedFilterIndex;
+        }
+
+        private int getLastOpenedDirectoryIndex() {
+            return Properties.Settings.Default.LastOpenedDirectoryIndex;
+        }
+
         private static List<string> allSupportedTypes() {
             List<string> types = new List<string>();
 
@@ -105,10 +127,14 @@ namespace PhotoPicker {
             op.Filter = allSupportedTypesString() + "|"
                 + jpegTypesString() + "|"
                 + pngTypesString();
+            op.FilterIndex = Properties.Settings.Default.LastOpenedFilterIndex;
 
             DialogResult result = op.ShowDialog();
             if (result.ToString() == "OK") {
                 _viewModel.SetImage(op.FileName, getTypes(op.FilterIndex - 1));
+
+                Properties.Settings.Default.LastOpenedFilterIndex = op.FilterIndex;
+                Properties.Settings.Default.Save();
             }
         }
 

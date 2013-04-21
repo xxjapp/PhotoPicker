@@ -17,6 +17,7 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
@@ -27,7 +28,11 @@
             <Label Grid.Row="0" Grid.Column="0" Content="Move deleted file to:"/>
             <TextBox Grid.Row="0" Grid.Column="1" Margin="3" x:Name="deleteDestinationTextBox"/>
 
-            <CheckBox Grid.Row="1" Grid.Column="1" Margin="3" HorizontalAlignment="Left" VerticalAlignment="Center" Content="Send to recycle bin" x:Name="sendToRecycleBinCheckBox" Click="sendToRecycleBinCheckBox_Clicked"/>
+            <CheckBox Grid.Row="1" Grid.Column="0" Margin="3" HorizontalAlignment="Left" VerticalAlignment="Center" Content="Send to recycle bin" x:Name="sendToRecycleBinCheckBox" Click="sendToRecycleBinCheckBox_Clicked"/>
+
+            <Label Grid.Row="2" Height="20"/>
+
+            <CheckBox Grid.Row="3" Grid.Column="0" Margin="3" HorizontalAlignment="Left" VerticalAlignment="Center" Content="Remember last view position" x:Name="rememberLastPositionCheckBox"/>
         </Grid>
 
         <Grid Grid.Row="1">
